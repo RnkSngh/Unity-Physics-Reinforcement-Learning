@@ -21,7 +21,6 @@ public class Agent_move : Agent
     public UnityEngine.Vector3 ball_start;
     public UnityEngine.Vector3 cube_start;
     public UnityEngine.Vector3 rod_start;
-    public int stepcount;
     // Start is called before the first frame update
 
 
@@ -44,7 +43,6 @@ public class Agent_move : Agent
 
     public override void OnEpisodeBegin()
     {
-        stepcount = 0;
         rb.isKinematic = true;
         rod.GetComponent<Rigidbody>().isKinematic = true;
         weight.isKinematic = true;
@@ -90,13 +88,16 @@ public class Agent_move : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        stepcount++;
-        sensor.AddObservation(weight.transform.position.x);
-        sensor.AddObservation(weight.transform.position.y);
-        sensor.AddObservation(weight.velocity.x);
+        sensor.AddObservation(weight.transform.position.x - this.transform.position.x);
+        sensor.AddObservation(weight.transform.position.y );
+        sensor.AddObservation(weight.transform.position.z - this.transform.position.z);
+        sensor.AddObservation(weight.velocity.x - rb.velocity.x);
         sensor.AddObservation(weight.velocity.y);
+        sensor.AddObservation(weight.velocity.z - rb.velocity.z);
         sensor.AddObservation(this.transform.position.x);
+        sensor.AddObservation(this.transform.position.z);
         sensor.AddObservation(rb.velocity.x);
+        sensor.AddObservation(rb.velocity.z);
 
     }
 
@@ -136,15 +137,11 @@ public class Agent_move : Agent
 
         SetReward(ball.transform.position.y);
 
-        //if (this.transform.position.x > 10 || this.transform.position.x < -10)
-        //{
-        //    EndEpisode();
-        //}
-        
-        if (stepcount>200)
+        if (this.transform.position.x > 10 || this.transform.position.x < -10 || this.transform.position.z < -10 || this.transform.position.z > 10)
         {
             EndEpisode();
         }
+
     }
 
     public override void Heuristic(float[] actionsOut)
@@ -159,54 +156,4 @@ public class Agent_move : Agent
 
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKey(KeyCode.LeftArrow))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.x = position.x - delta;
-    //        this.transform.position = position;
-
-    //    }
-
-
-    //    if (Input.GetKey(KeyCode.RightArrow))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.x = position.x + delta;
-    //        this.transform.position = position;
-    //    }
-
-    //    if (Input.GetKey(KeyCode.W))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.z = position.z + delta;
-    //        this.transform.position = position;
-    //    }
-
-
-
-    //    if (Input.GetKey(KeyCode.S))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.z = position.z - delta;
-    //        this.transform.position = position;
-    //    }
-
-
-    //    if (Input.GetKey(KeyCode.UpArrow))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.y = position.y + delta;
-    //        this.transform.position = position;
-    //    }
-
-    //    if (Input.GetKey(KeyCode.DownArrow))
-    //    {
-    //        Vector3 position = this.transform.position;
-    //        position.y = position.y - delta;
-    //        this.transform.position = position;
-    //    }
-    //}
 }

@@ -338,7 +338,6 @@ MonoBehaviour:
   ball_start: {x: 0, y: 0, z: 0}
   cube_start: {x: 0, y: 0, z: 0}
   rod_start: {x: 0, y: 0, z: 0}
-  stepcount: 0
 --- !u!54 &481752752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -440,12 +439,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 10
     NumStackedVectorObservations: 1
-    VectorActionSize: 01000000
+    VectorActionSize: 02000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 11400000, guid: e994946d1083903439e4c12769ed304c, type: 3}
+  m_Model: {fileID: 11400000, guid: 811691f5e28d13449b8160a7cca7e67f, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: CubeAgent
@@ -582,35 +581,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!59 &1183961743
-HingeJoint:
+--- !u!144 &1183961743
+CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183961741}
   m_ConnectedBody: {fileID: 481752752}
-  m_Anchor: {x: 0, y: -1, z: 0}
-  m_Axis: {x: 0, y: 0, z: 1}
+  m_Anchor: {x: 0, y: 1, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.39999998, z: 0}
-  m_UseSpring: 0
-  m_Spring:
+  m_ConnectedAnchor: {x: 0, y: 2.4, z: 0}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_TwistLimitSpring:
     spring: 0
     damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_Limits:
-    min: 0
-    max: 0
+  m_LowTwistLimit:
+    limit: -20
     bounciness: 0
-    bounceMinVelocity: 0.2
     contactDistance: 0
+  m_HighTwistLimit:
+    limit: 70
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 40
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 40
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
