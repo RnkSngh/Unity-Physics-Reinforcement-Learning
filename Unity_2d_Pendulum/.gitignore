@@ -31,6 +31,10 @@
 # Unity3D generated meta files
 *.pidb.meta
 
+
+#temp folder
+/Temp
+
 # Unity3D Generated File On Crash Reports
 /com.unity.ml-agents/sysinfo.txt
 
