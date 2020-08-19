@@ -9,6 +9,9 @@ using UnityEditor;
 using System;
 using Unity.MLAgents.Policies;
 
+/// <summary> The Agent_move class contains methods to interface with the Unity Ml-agents module. This class contains methods to reset episodes, set a reward
+/// function, collect agent observations, and actuate agent actions. 
+/// </summary>
 public class Agent_move : Agent
 {
     public UnityEngine.Vector3 CurrentPosition;
