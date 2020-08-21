@@ -26,10 +26,10 @@ Training episodes were reset if the y component of the weight was negative (i.e.
 # Robot Arm
 The Robot Arm project contains an abstraction of an arm that is fixed at the shoulder. The agent solves the task of navigating the hand to a randomly generated goal position, shown by a red cube.  The goal position is constrained to always spawn within the arm's reach, which can be represented by a sphere with a radius equal to the arm's length. The arm components are modeled as rigid bodies (i.e. no deformations were modeled) and thus all possible movements of the arm can be modeled as a set of independently applied torques to both joints.
 
-This project was inspired by [another Unity robot arm project](https://www.youtube.com/watch?v=6_TdoIv1yzk&t=567s), though this agent uses torque-based actuation to control the arm, rather than directly controlling the angles of joints. A torque-based actuation was chosen to explore whether the agent could find the correct sequence of torque applications to overcome gravity to lift the arm up to positions.
+This project was inspired by [another Unity robot arm project](https://www.youtube.com/watch?v=6_TdoIv1yzk&t=567s), though the agent in this repo uses torque-based actuation to control the arm rather than directly controlling the angles of joints. A torque-based actuation was chosen to explore whether the agent could find the correct sequence of torque applications to overcome gravity to lift the arm up to positions.
 
 ## Reward Function
-The agent was trained to maximize the negative of the distance between the target cube and the hand. 
+The agent was trained to minimize the distance between the target cube and the hand (though reward functions are typically framed as a maximization problem, and thus was framed as maximizing the negative of the distance between the target cube and the hand). 
 ## Observations 
 The neural net takes in a 16 dimensional observation input. 12 of the 16 dimensions are the x, y, and z positions and velocities of the hand and elbow. Similar to the weight inputs for the cube agent, the elbow inputs use a local coordinate system to define relative positions and velocities with respect to the hand's relative positions and velocities. 4 of the 16 dimensions represent a quaternion of the orientation of the shoulder joint. 
 ## Actions
