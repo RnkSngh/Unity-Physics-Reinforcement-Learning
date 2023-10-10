@@ -10,6 +10,9 @@ This folder contains two separate Unity projects - a [3D inverted pendulum](#3d-
 ![](/GameGifs/robo_arm_untrained.gif)
 ## Trained Robot Arm
 ![](/GameGifs/robo_arm_trained.gif)
+# Dependencies
+This project was made in Unity 2020.3.8, using [Unity ML-Agents](https://unity.com/products/machine-learning-agents).
+
 # 3D Inverted Pendulum
 The 3D inverted Pendulum problem is a generalization of the [inverted pendulum problem](https://www.youtube.com/watch?v=ycsYhmwX9lM). Instead of a rectangle constrained to move in a 1D line to balance the attached weight, the 3D inverted pendulum consists of a cube constrained to move in a 2D plane to balance a weight. 
 
@@ -37,3 +40,5 @@ The agent outputs a 4 dimensional output vector of torques to be applied to the 
 ## Reset Conditions
 Training episodes were reset once the arm reached the goal, which was found by checking if the hand was within a given tolerance distance (chosen to be 0.7 meters) within the center of the target cube.
 
+## Acknowledgements 
+This project was started during my Summer 1 '20 batch at the [Recurse Center](https://www.recurse.com). Thank you to everyone in the community for providing a supportive and encouraging space for such a diverse collection of programmers.
